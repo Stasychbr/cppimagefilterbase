@@ -11,7 +11,10 @@ int main( int argc, char *argv[] )
             throw "Not enough arguments";
 
         png_toolkit studTool;
+        image_data imData;
         studTool.load(argv[1]);
+        imData = studTool.getPixelData();
+
         studTool.save(argv[2]);
 
     }
