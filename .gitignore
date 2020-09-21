@@ -3,3 +3,6 @@ build/*
 /.vs
 /out/build/x64-Debug (по умолчанию)
 /out/build/x64-Debug
+/image.png
+/config.txt
+/result.png
