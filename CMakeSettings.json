@@ -1,4 +1,5 @@
 ﻿{
+  // Дополнительные сведения об этом файле см. по адресу https://go.microsoft.com//fwlink//?linkid=834763.
   "configurations": [
     {
       "name": "x64-Debug",
@@ -9,8 +10,7 @@
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": "",
-      "variables": []
+      "ctestCommandArgs": ""
     }
   ]
 }

@@ -9,20 +9,20 @@ int main( int argc, char *argv[] )
     // toolkit near test images!
     try
     {
-        if (argc != 4)
+        if (argc != 3)
             throw "Not enough arguments";
 
         png_toolkit studTool;
         image_data image;
-        ConfigReader cr(argv[1]);
+        ConfigReader cr(argv[0]);
         Filter* filter;
-        studTool.load(argv[2]);
+        studTool.load(argv[1]);
         image = studTool.getPixelData();
         while (filter = cr.ReadNextFilter()) {
             filter->run(image);
             delete filter;
         }
-        studTool.save(argv[3]);
+        studTool.save(argv[2]);
 
     }
     catch (const char *str)
