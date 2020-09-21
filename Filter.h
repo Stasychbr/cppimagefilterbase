@@ -15,4 +15,5 @@ public:
     int left(image_data& image);
     int bottom(image_data& image);
     int right(image_data& image);
+    virtual ~Filter() {};
 };

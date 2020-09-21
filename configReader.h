@@ -1,12 +1,14 @@
 #pragma once
 #include "png_toolkit.h"
+#include "Filter.h"
+#include <fstream>
 
 class ConfigReader {
 private:
-    ifstream confFile;
+    static const char* redFilterName;
+    static const int lineBufSize;
+    std::ifstream confFile;
 public:
     ConfigReader(const char* confFileName);
-    bool ReadNextFilter();
-
-    image_data* ReadConfig(const char* confFile);
+    Filter* ReadNextFilter();
 };

@@ -1,5 +1,7 @@
 #include <iostream>
 #include "png_toolkit.h"
+#include "Filter.h"
+#include "configReader.h"
 
 int main( int argc, char *argv[] )
 {
@@ -11,10 +13,15 @@ int main( int argc, char *argv[] )
             throw "Not enough arguments";
 
         png_toolkit studTool;
-        image_data imData;
+        image_data image;
+        ConfigReader cr(argv[0]);
+        Filter* filter;
         studTool.load(argv[1]);
-        imData = studTool.getPixelData();
-
+        image = studTool.getPixelData();
+        while (filter = cr.ReadNextFilter()) {
+            filter->run(image);
+            delete filter;
+        }
         studTool.save(argv[2]);
 
     }
