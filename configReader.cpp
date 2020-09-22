@@ -3,10 +3,12 @@
 #include <string.h>
 #include "Red.h"
 #include "BlackWhite.h"
+#include "Threshold.h"
 using namespace std;
 
 const char* ConfigReader::redFilterName = "Red";
 const char* ConfigReader::blackWhiteFilterName = "BlackWhite";
+const char* ConfigReader::thresholdFilterName = "Threshold";
 const int ConfigReader::lineBufSize = 32;
 
 ConfigReader::ConfigReader(const char* confFileName) {
@@ -27,6 +29,10 @@ Filter* ConfigReader::ReadNextFilter() {
     else if (strstr(line, blackWhiteFilterName)) {
         sscanf(line + strlen(blackWhiteFilterName), "%i %i %i %i", &u, &l, &b, &r);
         return (Filter*)new BlackWhite(u, l, b, r);
+    }
+    else if (strstr(line, thresholdFilterName)) {
+        sscanf(line + strlen(thresholdFilterName), "%i %i %i %i", &u, &l, &b, &r);
+        return (Filter*)new Threshold(u, l, b, r);
     }
     else {
         return nullptr;

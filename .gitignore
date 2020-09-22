@@ -6,3 +6,4 @@ build/*
 /image.png
 /config.txt
 /result.png
+*.png
