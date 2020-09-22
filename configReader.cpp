@@ -19,7 +19,7 @@ Filter* ConfigReader::ReadNextFilter() {
     int u = 0, l = 0, b = 0, r = 0;
     confFile.getline(line, lineBufSize);
     if (strstr(line, redFilterName)) {
-        sscanf(line, "%i %i %i %i", &u, &l, &b, &r);
+        sscanf(line + strlen(redFilterName), "%i %i %i %i", &u, &l, &b, &r);
         return (Filter*)new Red(u, l, b, r);
     }
     else {

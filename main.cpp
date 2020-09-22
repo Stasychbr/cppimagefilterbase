@@ -16,7 +16,8 @@ int main( int argc, char *argv[] )
         image_data image;
         ConfigReader cr(argv[1]);
         Filter* filter;
-        studTool.load(argv[2]);
+        if (!studTool.load(argv[2]))
+            throw "Can't load the image";
         image = studTool.getPixelData();
         while (filter = cr.ReadNextFilter()) {
             filter->run(image);
