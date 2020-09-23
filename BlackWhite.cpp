@@ -11,7 +11,7 @@ unsigned char BlackWhite::intensity(image_data& image, int row, int col) {
     unsigned char& r = image.pixels[(row * image.w + col) * c];
     unsigned char& g = image.pixels[(row * image.w + col) * c + 1];
     unsigned char& b = image.pixels[(row * image.w + col) * c + 2];
-    return (unsigned char)((3*(int)r + 6*(int)g + (int)b) / 10);
+    return (3*r + 6*g + b) / 10;
 }
 
 bool BlackWhite::run(image_data& image) {

@@ -16,13 +16,23 @@ std::vector<unsigned char> Threshold::pixMatrix(image_data& image, int row, int 
 }
 
 bool Threshold::run(image_data& image) {
-    if (!BlackWhite::run(image)) {
+    unsigned char* bwImPix = new unsigned char[image.w * image.h * image.compPerPixel];
+    if (!bwImPix) {
+        return false;
+    }
+    memcpy(bwImPix, image.pixels, image.w * image.h * image.compPerPixel);
+    image_data bwIm;
+    bwIm.compPerPixel = image.compPerPixel;
+    bwIm.h = image.h;
+    bwIm.w = image.w;
+    bwIm.pixels = bwImPix;
+    if (!BlackWhite::run(bwIm)) {
         return false;
     }
     for (int i = up(image); i < bottom(image); i++) {
         for (int j = left(image); j < right(image); j++) {
-            std::vector<unsigned char> intensMatrix = pixMatrix(image, i, j);
-            unsigned char curIntense = intensity(image, i, j);
+            std::vector<unsigned char> intensMatrix = pixMatrix(bwIm, i, j);
+            unsigned char curIntense = intensity(bwIm, i, j);
             unsigned char median;
             int size = intensMatrix.size();
             std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2, intensMatrix.end());
@@ -40,5 +50,6 @@ bool Threshold::run(image_data& image) {
             }
         }
     }
+    delete[] bwImPix;
     return true;
 }
