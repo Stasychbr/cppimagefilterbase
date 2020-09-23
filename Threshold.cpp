@@ -7,7 +7,7 @@ std::vector<unsigned char> Threshold::pixMatrix(image_data& image, int row, int 
     std::vector<unsigned char> matrix;
     for (int i = row - 2; i <= row + 2; i++) {
         for (int j = col - 2; j <= col + 2; j++) {
-            if (i >= left(image) && i < up(image) && j >= left(image) && j < right(image)) {
+            if (i >= left(image) && i < bottom(image) && j >= left(image) && j < right(image)) {
                 matrix.push_back(intensity(image, i, j));
             }
         }
@@ -34,7 +34,7 @@ bool Threshold::run(image_data& image) {
             std::vector<unsigned char> intensMatrix = pixMatrix(bwIm, i, j);
             unsigned char curIntense = bwImPix[(i * image.w + j) * image.compPerPixel];
             unsigned char median;
-            int size = intensMatrix.size();
+            int size = (int)intensMatrix.size();
             std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2, intensMatrix.end());
             if (intensMatrix.size() % 2 == 0) {
                 std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2 + 1, intensMatrix.end());
