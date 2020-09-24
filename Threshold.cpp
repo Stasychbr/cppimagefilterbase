@@ -7,7 +7,7 @@ std::vector<unsigned char> Threshold::pixMatrix(image_data& image, int row, int 
     std::vector<unsigned char> matrix;
     for (int i = row - 2; i <= row + 2; i++) {
         for (int j = col - 2; j <= col + 2; j++) {
-            if (i >= left(image) && i < bottom(image) && j >= left(image) && j < right(image)) {
+            if (i >= up(image) && i < bottom(image) && j >= left(image) && j < right(image)) {
                 matrix.push_back(intensity(image, i, j));
             }
         }
