@@ -26,18 +26,18 @@ bool Threshold::run(image_data& image) {
     bwIm.h = image.h;
     bwIm.w = image.w;
     bwIm.pixels = bwImPix;*/
-    if (!BlackWhite::run(image)) {
+    /*if (!BlackWhite::run(image)) {
         return false;
-    }
+    }*/
     for (int i = up(image); i < bottom(image); i++) {
         for (int j = left(image); j < right(image); j++) {
             std::vector<unsigned char> intensMatrix = pixMatrix(image, i, j);
-            unsigned char curIntense = image.pixels[(i * image.w + j) * image.compPerPixel];
+            unsigned char curIntense = intensity(image, i, j);
             unsigned char median;
             int size = (int)intensMatrix.size();
             std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2, intensMatrix.end());
             if (intensMatrix.size() % 2 == 0) {
-                std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2 + 1, intensMatrix.end());
+                std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2 - 1, intensMatrix.end());
                 median = (intensMatrix[size / 2] + intensMatrix[size / 2 - 1]) / 2;
             }
             else {
