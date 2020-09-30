@@ -44,7 +44,7 @@ bool Threshold::run(image_data& image) {
             else {
                 median = intensMatrix[size / 2];
             }
-            if (curIntense < median) {
+            if (curIntense <= median) {
                 int& c = image.compPerPixel;
                 int& w = image.w;
                 //image.pixels[(i * w + j) * c] = image.pixels[(i * w + j) * c + 1] = image.pixels[(i * w + j) * c + 2] = 0;*/
