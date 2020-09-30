@@ -39,7 +39,7 @@ bool Threshold::run(image_data& image) {
             std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2, intensMatrix.end());
             if (intensMatrix.size() % 2 == 0) {
                 std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2 - 1, intensMatrix.end());
-                median = (intensMatrix[size / 2] + intensMatrix[size / 2 - 1]) / 2;
+                median = (int)((int)intensMatrix[size / 2] + (int)intensMatrix[size / 2 - 1]) / 2;
             }
             else {
                 median = intensMatrix[size / 2];
