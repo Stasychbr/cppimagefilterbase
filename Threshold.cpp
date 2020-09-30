@@ -34,28 +34,26 @@ bool Threshold::run(image_data& image) {
         for (int j = left(image); j < right(image); j++) {
             std::vector<unsigned char> intensMatrix = pixMatrix(image, i, j);
             unsigned char curIntense = image.pixels[(i * image.w + j) * image.compPerPixel]; 
-            unsigned char median;
+            //unsigned char median;
             int size = (int)intensMatrix.size();
-            std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2, intensMatrix.end());
-            if (intensMatrix.size() % 2 == 0) {
-                std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2 - 1, intensMatrix.end());
-                median = (int)((int)intensMatrix[size / 2] + (int)intensMatrix[size / 2 - 1]) / 2;
+            //std::sort(intensMatrix.begin(), intensMatrix.end());
+            /*if (intensMatrix.size() % 2 == 0) {
+                median = (intensMatrix[size / 2] + intensMatrix[size / 2 - 1]) / 2;
             }
             else {
                 median = intensMatrix[size / 2];
-            }
-            if (curIntense < median) {
-                int& c = image.compPerPixel;
-                int& w = image.w;
+            }*/
+            std::nth_element(intensMatrix.begin(), intensMatrix.begin() + size / 2, intensMatrix.end());
+            if (curIntense < intensMatrix[size / 2]) {
                 //image.pixels[(i * w + j) * c] = image.pixels[(i * w + j) * c + 1] = image.pixels[(i * w + j) * c + 2] = 0;*/
-                toErase.push_back((i * w + j) * c);
-                toErase.push_back((i * w + j) * c + 1);
-                toErase.push_back((i * w + j) * c + 2);
+                toErase.push_back((i * image.w + j) * image.compPerPixel);
+                //toErase.push_back((i * w + j) * c + 1);
+                //toErase.push_back((i * w + j) * c + 2);
             }
         }
     }
     for (auto pixel : toErase) {
-        image.pixels[pixel] = 0;
+        image.pixels[pixel] = image.pixels[pixel + 1] = image.pixels[pixel + 2] = 0;
     }
     //delete[] bwImPix;
     return true;
