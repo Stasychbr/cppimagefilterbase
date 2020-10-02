@@ -8,8 +8,8 @@ unsigned char Convolutional::getConvolution(int row, int col, image_data& image)
     float sum = 0;
     for (int i = 0; i < _wSize; i++) {
         for (int j = 0; j < _wSize; j++) {
-            int pixX = i + row - _wSize / 2;
-            int pixY = j + col - _wSize / 2;
+            int pixX = i + row;
+            int pixY = j + col;
             if (pixX >= up(image) && pixX < bottom(image) && pixY >= left(image) && pixY < right(image)) {
                 int pixPos = (pixX * image.w + pixY) * image.compPerPixel;
                 res += weight(i, j) * image.pixels[pixPos];
