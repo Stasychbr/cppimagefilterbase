@@ -5,7 +5,7 @@ class Edge :private Convolutional {
 private:
     static const int _weights[Convolutional::wSize()][Convolutional::wSize()];
 protected:
-    virtual int weight(int i, int j) override { return _weights[i][j]; };
+    virtual int weight(int row, int col) override { return _weights[row][col]; };
 public:
     Edge(int up, int left, int bottom, int right);
 };

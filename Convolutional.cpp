@@ -5,7 +5,13 @@ Convolutional::Convolutional(int up, int left, int bottom, int right): BlackWhit
 
 unsigned char Convolutional::getConvolution(int row, int col, image_data& image) {
     int res = 0;
-    int sum = 0;
+    if (_wSum == 0) {
+        for (int i = 0; i < _wSize; i++) {
+            for (int j = 0; j < _wSize; j++) {
+                _wSum += weight(i, j);
+            }
+        }
+    }
     for (int i = 0; i < _wSize; i++) {
         for (int j = 0; j < _wSize; j++) {
             int pixX = i + row - _wSize / 2;
@@ -13,11 +19,10 @@ unsigned char Convolutional::getConvolution(int row, int col, image_data& image)
             if (pixX >= up(image) && pixX < bottom(image) && pixY >= left(image) && pixY < right(image)) {
                 int pixPos = (pixX * image.w + pixY) * image.compPerPixel;
                 res += weight(i, j) * image.pixels[pixPos];
-                sum += weight(i, j);
             }
         }
     }
-    res /= sum;
+    res /= _wSum;
     return (unsigned char) res;
 }
 
