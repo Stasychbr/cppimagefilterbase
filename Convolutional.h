@@ -12,5 +12,5 @@ protected:
     unsigned char getConvolution(int row, int col, image_data& image);
     bool run(image_data& image) override;
     constexpr static int wSize() { return _wSize; };
-    virtual float weight(int i, int j) = 0;
+    virtual int weight(int i, int j) = 0;
 };
