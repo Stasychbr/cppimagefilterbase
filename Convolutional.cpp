@@ -12,7 +12,7 @@ unsigned char Convolutional::getConvolution(int row, int col, image_data& image)
             int pixY = j + col - _wSize / 2;
             if (pixX >= up(image) && pixX < bottom(image) && pixY >= left(image) && pixY < right(image)) {
                 int pixPos = (pixX * image.w + pixY) * image.compPerPixel;
-                res += weight(i, j) * image.pixels[pixPos + j];
+                res += weight(i, j) * image.pixels[pixPos];
                 sum += weight(i, j);
             }
         }
