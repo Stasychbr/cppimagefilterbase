@@ -8,5 +8,4 @@ protected:
     virtual float weight(int i, int j) override { return _weights[i][j]; };
 public:
     Blur(int up, int left, int bottom, int right);
-    virtual bool run(image_data& image) override;
 };

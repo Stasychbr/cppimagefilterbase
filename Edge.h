@@ -1,7 +1,11 @@
 #pragma once 
-#include "BlackWhite.h"
+#include "Convolutional.h"
 
-class Edge :private BlackWhite {
+class Edge :private Convolutional {
+private:
+    static const float _weights[Convolutional::wSize()][Convolutional::wSize()];
+protected:
+    virtual float weight(int i, int j) override { return _weights[i][j]; };
 public:
-    virtual bool run(image_data& image);
+    Edge(int up, int left, int bottom, int right);
 };

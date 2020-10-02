@@ -10,6 +10,7 @@ private:
 protected:
     Convolutional(int up, int left, int bottom, int right);
     unsigned char getConvolution(int row, int col, image_data& image);
+    bool run(image_data& image) override;
     constexpr static int wSize() { return _wSize; };
     virtual float weight(int i, int j) = 0;
 };

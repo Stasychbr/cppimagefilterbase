@@ -9,6 +9,7 @@ private:
     static const char* blackWhiteFilterName;
     static const char* thresholdFilterName;
     static const char* blurFilterName;
+    static const char* edgeFilterName;
     static const int lineBufSize;
     std::ifstream confFile;
 public:

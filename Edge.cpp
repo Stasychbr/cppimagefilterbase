@@ -1,6 +1,7 @@
 #include "Edge.h"
 
-bool Edge::run(image_data& image) {
+const float Edge::_weights[Convolutional::wSize()][Convolutional::wSize()] = { {-1, -1, -1}, {-1, 9, -1}, {-1, -1, -1} };
 
-    return false;
+
+Edge::Edge(int up, int left, int bottom, int right) : Convolutional(up, left, bottom, right){
 }
