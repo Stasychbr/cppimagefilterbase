@@ -14,7 +14,14 @@ bool Blur::run(image_data& image) {
     copyImage.h = image.h;
     copyImage.w = image.w;
     copyImage.pixels = new unsigned char[image.w * image.h * image.compPerPixel];
-    memcpy(copyImage.pixels, image.pixels, image.w * image.h * image.compPerPixel);
+    for (int i = 0; i < image.h; i++) {
+        for (int j = 0; j < image.w; j++) {
+            for (int color = 0; color < 3; color++) {
+                copyImage.pixels[(i * image.w + j) * image.compPerPixel + color] = 
+                    image.pixels[(i * image.w + j) * image.compPerPixel + color];
+            }
+        }
+    }
     for (int i = up(image); i < bottom(image); i++) {
         for (int j = left(image); j < right(image); j++) {
             conv = Convolutional::getConvolution(i, j, copyImage);
