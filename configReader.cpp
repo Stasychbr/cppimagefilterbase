@@ -42,10 +42,10 @@ Filter* ConfigReader::ReadNextFilter() {
         sscanf(line + strlen(blurFilterName), "%i %i %i %i", &u, &l, &b, &r);
         return (Filter*)new Blur(u, l, b, r);
     }
-    else if (strstr(line, edgeFilterName)) {
+    /*else if (strstr(line, edgeFilterName)) {
         sscanf(line + strlen(edgeFilterName), "%i %i %i %i", &u, &l, &b, &r);
         return (Filter*)new Edge(u, l, b, r);
-    }
+    }*/
     else {
         return nullptr;
     }

@@ -8,4 +8,5 @@ protected:
     virtual int weight(int row, int col) override { return _weights[row][col]; };
 public:
     Blur(int up, int left, int bottom, int right);
+    bool run(image_data& image) override;
 };
