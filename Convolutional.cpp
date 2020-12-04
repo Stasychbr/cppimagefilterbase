@@ -28,7 +28,7 @@ vector<unsigned char> Convolutional::getConvolution(int row, int col, image_data
             }
         }
         conv /= _wSum;
-        res[color] = conv;
+        res[color] = (unsigned int)conv;
     }
     return res;
 }
